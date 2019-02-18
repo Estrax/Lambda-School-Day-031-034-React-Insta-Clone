@@ -41,7 +41,7 @@ class App extends Component {
 				{this.state.posts.map(post =>
 					<PostContainer
 						post={post}
-						key={post.id}
+						key={post.timestamp}
 					/>
 				)}
 			</div>
