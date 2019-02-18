@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import dummyData from './dummy-data';
+import PostContainer from './components/PostContainer';
 
 class App extends Component {
 	constructor() {
@@ -26,6 +27,7 @@ class App extends Component {
 		return (
 			<div>
 				<SearchBar />
+				<PostContainer />
 			</div>
 		);
 	}
