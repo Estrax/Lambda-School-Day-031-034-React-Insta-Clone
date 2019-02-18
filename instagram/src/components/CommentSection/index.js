@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './index.css';
 
-const CommentSection = () => {
+const CommentSection = (props) => {
 	return (
 		<div>
-			COMMENT
+			{props.comments.map((comment, i) => <p key={i}>{comment.text}</p>)}
 		</div>
 	);
 }

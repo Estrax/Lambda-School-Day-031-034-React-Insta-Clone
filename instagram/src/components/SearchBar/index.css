@@ -1,10 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Grand+Hotel');
 
 .navbar-brand {
-    color: red;
     font-family: 'Grand Hotel';
+    font-size: 24px !important;
 }
 
 .navbar {
     margin-bottom: 5rem;
+    border-bottom: 1px solid lightgray;
+}
+
+.navbar input {
+    width: 200px;
+    text-align: center;
+    box-sizing: border-box;
+    background: url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_search_48px-128.png);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: 54px 50%;
+}
+
+.navbar input:focus {
+    background-position: 0;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
-import logo from '../../assets/iglogo.png';
+// import logo from '../../assets/iglogo.png';
 import {
 	Collapse,
 	Navbar,
@@ -10,17 +10,15 @@ import {
 	NavItem,
 	NavLink
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
 
-		this.setState({
+		this.state = {
 			isOpen: false
-		});
+		};
 		this.toggle = this.toggle.bind(this);
 	}
 
@@ -32,10 +30,14 @@ class SearchBar extends Component {
 	}
 	render() {
 		return (
-			<Navbar color="light" light expand="md">
-				<NavbarBrand href="/">Instagram</NavbarBrand>
+			<Navbar color="white" light expand="md">
+				<NavbarBrand href="/">
+					IG
+					|
+					Instagram
+				</NavbarBrand>
 				<NavbarToggler onClick={this.toggle} />
-				<Collapse isOpen={true} navbar>
+				<Collapse isOpen={this.state.isOpen} navbar>
 					<Nav className="ml-auto" navbar>
 						<NavItem>
 							<input
