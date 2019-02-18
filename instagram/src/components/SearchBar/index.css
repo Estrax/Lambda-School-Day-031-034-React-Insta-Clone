@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Grand+Hotel');
+
+.navbar-brand {
+    color: red;
+    font-family: 'Grand Hotel';
+}
+
+.navbar {
+    margin-bottom: 5rem;
+}
