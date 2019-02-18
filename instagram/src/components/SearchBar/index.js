@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 import logo from '../../assets/iglogo.png';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 	return (
 		<div>
 			<div className="logo-wrapper">
@@ -11,7 +11,12 @@ const SearchBar = () => {
 			</div>
 
 			<div>
-				<input type="text" placeholder="Search" />
+				<input
+					type="text"
+					placeholder="Search"
+					name="search"
+					onChange={props.handleInput}
+				/>
 			</div>
 
 			<div>
