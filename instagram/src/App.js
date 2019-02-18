@@ -9,8 +9,11 @@ class App extends Component {
 		super();
 
 		this.state = {
-			posts: []
+			posts: [],
+			search: ''
 		}
+
+		this.handleInput = this.handleInput.bind(this);
 	}
 
 	componentDidMount() {
@@ -20,6 +23,14 @@ class App extends Component {
 	fetchComments() {
 		this.setState({
 			posts: dummyData
+		});
+	}
+
+	handleInput(event) {
+		event.preventDefault();
+		this.setState({
+			...this.state,
+			[event.target.name]: event.target.value
 		});
 	}
 
