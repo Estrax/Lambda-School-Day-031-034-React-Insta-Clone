@@ -37,8 +37,13 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<SearchBar />
-				<PostContainer />
+				<SearchBar handleInput={this.handleInput} search={this.state.search} />
+				{this.state.posts.map(post =>
+					<PostContainer
+						post={post}
+						key={post.id}
+					/>
+				)}
 			</div>
 		);
 	}
