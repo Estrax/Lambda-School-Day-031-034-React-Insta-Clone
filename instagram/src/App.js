@@ -21,9 +21,12 @@ class App extends Component {
 	}
 
 	fetchComments() {
-		this.setState({
-			posts: dummyData
-		});
+		setTimeout(() => {
+			this.setState({
+				...this.state,
+				posts: dummyData
+			})}, 3000
+		);
 	}
 
 	handleInput(event) {
