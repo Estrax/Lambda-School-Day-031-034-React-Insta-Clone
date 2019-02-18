@@ -11,6 +11,8 @@ import {
 	NavLink
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faCompass, faUser, faHeart } from '@fortawesome/free-regular-svg-icons';
 
 class SearchBar extends Component {
 	constructor(props) {
@@ -32,7 +34,7 @@ class SearchBar extends Component {
 		return (
 			<Navbar color="white" light expand="md">
 				<NavbarBrand href="/">
-					IG
+					<FontAwesomeIcon icon={faInstagram} />
 					|
 					Instagram
 				</NavbarBrand>
@@ -51,17 +53,17 @@ class SearchBar extends Component {
 					<Nav className="ml-auto" navbar>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon="compass" />
+								<FontAwesomeIcon icon={faCompass} />
 							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon="heart" />
+								<FontAwesomeIcon icon={faHeart} />
 							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon="user" />
+								<FontAwesomeIcon icon={faUser} />
 							</NavLink>
 						</NavItem>
 					</Nav>
