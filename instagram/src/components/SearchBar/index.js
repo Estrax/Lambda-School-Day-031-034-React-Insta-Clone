@@ -6,6 +6,7 @@ const SearchBar = () => {
 	return (
 		<div>
 			<div className="logo-wrapper">
+				<i className="fab fa-instagram" />
 				<img src={logo} className="logo" alt="Instagram logo" />
 			</div>
 
@@ -15,13 +16,13 @@ const SearchBar = () => {
 
 			<div>
 				<div>
-					<i className="fa fa-compass" />
+					<i className="far fa-compass" />
 				</div>
 				<div>
-					<i className="fa fa-heart" />
+					<i className="far fa-heart" />
 				</div>
 				<div>
-					<i className="fa fa-user-circle" />
+					<i className="far fa-user" />
 				</div>
 			</div>
 		</div>
