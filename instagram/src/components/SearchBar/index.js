@@ -35,7 +35,7 @@ class SearchBar extends Component {
 			<Navbar color="white" light expand="md">
 				<NavbarBrand href="/">
 					<FontAwesomeIcon icon={faInstagram} />
-					|
+					<span className="divider">|</span>
 					Instagram
 				</NavbarBrand>
 				<NavbarToggler onClick={this.toggle} />
@@ -53,17 +53,17 @@ class SearchBar extends Component {
 					<Nav className="ml-auto" navbar>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon={faCompass} />
+								<FontAwesomeIcon icon={faCompass} className="icon" />
 							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon={faHeart} />
+								<FontAwesomeIcon icon={faHeart} className="icon" />
 							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon={faUser} />
+								<FontAwesomeIcon icon={faUser} className="icon" />
 							</NavLink>
 						</NavItem>
 					</Nav>

@@ -7,9 +7,8 @@
 }
 
 .post .post-top {
-    display: flex;
-    vertical-align: middle;
-    margin: 1rem auto;
+    display: table;
+    margin: 1rem 0;
 }
 
 .post .post-top img {
@@ -17,10 +16,14 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    vertical-align: middle;
+    display: inline-block;
 }
 
 .post .post-top p {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    display: inline-block;
+    font-weight: 500;
 }
 
 .post .post-mid img {
@@ -30,6 +33,10 @@
 .post .post-bottom {
     padding-top: 1rem;
     margin: 0 1rem;
+}
+
+.post .post-bottom p {
+    font-weight: 500;
 }
 
 .icon {
