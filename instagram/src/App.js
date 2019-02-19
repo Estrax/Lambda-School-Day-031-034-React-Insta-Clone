@@ -52,16 +52,14 @@ class App extends Component {
 		return (
 			<div>
 				<SearchBar
-					handleInput={this.searchPosts}
+					handleInput={this.handleInput}
+					handleSearch={this.searchPosts}
 					search={this.state.search}
 				/>
 				<div className="posts">
-					{posts.map(post =>
-						<PostContainer
-							post={post}
-							key={post.timestamp}
-						/>
-					)}
+					<PostContainer
+						posts={posts}
+					/>
 				</div>
 			</div>
 		);
