@@ -20,17 +20,37 @@ class App extends Component {
 		this.addNewComment = this.addNewComment.bind(this);
 	}
 
+	encode(todos) {
+		return JSON.stringify(todos);
+	}
+
+	decode(str) {
+		return JSON.parse(str)[0];
+	}
+
+	localStorageSave(str) {
+		localStorage.setItem('posts', str);
+	}
+
+	localStorageFetch() {
+		return localStorage.getItem('posts');
+	}
+
+
 	componentDidMount() {
 		this.fetchComments();
 	}
 
 	fetchComments() {
-		setTimeout(() => {
-			this.setState({
-				...this.state,
-				posts: dummyData
-			})}, 2000
-		);
+		let posts = this.decode(this.localStorageFetch());
+		if(posts === "[]" || posts === null || posts === undefined || posts === [] || posts.length === 0){
+			this.localStorageSave(this.encode(dummyData));
+		}
+
+		this.setState({
+			...this.state,
+			posts: this.decode(this.localStorageFetch())
+		});
 	}
 
 	handleInput(event) {
@@ -42,6 +62,8 @@ class App extends Component {
 	}
 
 	searchPosts(event) {
+		event.preventDefault();
+
 		const posts = this.state.posts.filter(post => post.username.includes(event.target.value)===true)
 		this.setState({
 			...this.state,
@@ -53,9 +75,11 @@ class App extends Component {
 		event.preventDefault();
 		this.state.posts.filter(post => post.timestamp === index)[0].likes += 1;
 
+		this.localStorageSave(this.encode(this.state.posts));
+
 		this.setState({
 			...this.state,
-			posts: this.state.posts
+			posts: this.decode(this.localStorageFetch())
 		});
 	}
 
@@ -66,11 +90,13 @@ class App extends Component {
 			text: event.target.newComment.value
 		});
 
+		this.localStorageSave(this.encode([this.state.posts]));
+
 		event.target.newComment.value = "";
 
 		this.setState({
 			...this.state,
-			posts: this.state.posts
+			posts: this.decode(this.localStorageFetch())
 		});
 	}
 

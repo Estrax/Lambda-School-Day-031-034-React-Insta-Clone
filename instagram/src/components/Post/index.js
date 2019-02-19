@@ -8,7 +8,6 @@ import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 
 const Post = (props) => {
     const timestamp = moment(props.post.timestamp, "MMMM Do YYYY, h:mm:ss a").fromNow();
-
     return (
         <div className="post">
             <div className="post-top">

@@ -12,7 +12,7 @@ const PostContainer = (props) => {
 }
 
 PostContainer.propTypes = {
-	posts: PropTypes.array
+	posts: PropTypes.arrayOf(Object)
 }
 
 export default PostContainer;
