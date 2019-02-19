@@ -16,6 +16,8 @@ class App extends Component {
 
 		this.handleInput = this.handleInput.bind(this);
 		this.searchPosts = this.searchPosts.bind(this);
+		this.likePost = this.likePost.bind(this);
+		this.addNewComment = this.addNewComment.bind(this);
 	}
 
 	componentDidMount() {
@@ -27,7 +29,7 @@ class App extends Component {
 			this.setState({
 				...this.state,
 				posts: dummyData
-			})}, 3000
+			})}, 2000
 		);
 	}
 
@@ -47,6 +49,31 @@ class App extends Component {
 		});
 	}
 
+	likePost(event, index) {
+		event.preventDefault();
+		this.state.posts.filter(post => post.timestamp === index)[0].likes += 1;
+
+		this.setState({
+			...this.state,
+			posts: this.state.posts
+		});
+	}
+
+	addNewComment(event, index) {
+		event.preventDefault();
+		this.state.posts.filter(post => post.timestamp === index)[0].comments.push({
+			username: 'lukaszsiatka',
+			text: event.target.newComment.value
+		});
+
+		event.target.newComment.value = "";
+
+		this.setState({
+			...this.state,
+			posts: this.state.posts
+		});
+	}
+
 	render() {
 		const posts = this.state.filteredPosts.length > 0 ? this.state.filteredPosts : this.state.posts;
 		return (
@@ -59,6 +86,8 @@ class App extends Component {
 				<div className="posts">
 					<PostContainer
 						posts={posts}
+						likePost={this.likePost}
+						addNewComment={this.addNewComment}
 					/>
 				</div>
 			</div>
