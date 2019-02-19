@@ -1,0 +1,12 @@
+.comment {
+    
+}
+
+.comment .username {
+    font-weight: 700;
+}
+
+.comment .content {
+    margin-left: .5rem;
+    word-wrap: wrap;
+}
