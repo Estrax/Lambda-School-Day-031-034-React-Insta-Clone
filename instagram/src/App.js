@@ -10,10 +10,12 @@ class App extends Component {
 
 		this.state = {
 			posts: [],
-			search: ''
+			search: '',
+			filteredPosts: []
 		}
 
 		this.handleInput = this.handleInput.bind(this);
+		this.searchPosts = this.searchPosts.bind(this);
 	}
 
 	componentDidMount() {
@@ -37,12 +39,24 @@ class App extends Component {
 		});
 	}
 
+	searchPosts(event) {
+		const posts = this.state.posts.filter(post => post.username.includes(event.target.value)===true)
+		this.setState({
+			...this.state,
+			filteredPosts: posts
+		});
+	}
+
 	render() {
+		const posts = this.state.filteredPosts.length > 0 ? this.state.filteredPosts : this.state.posts;
 		return (
 			<div>
-				<SearchBar handleInput={this.handleInput} search={this.state.search} />
+				<SearchBar
+					handleInput={this.searchPosts}
+					search={this.state.search}
+				/>
 				<div className="posts">
-					{this.state.posts.map(post =>
+					{posts.map(post =>
 						<PostContainer
 							post={post}
 							key={post.timestamp}
