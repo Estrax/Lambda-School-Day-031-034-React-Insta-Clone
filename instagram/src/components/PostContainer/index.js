@@ -12,7 +12,13 @@ const PostContainer = (props) => {
 }
 
 PostContainer.propTypes = {
-	posts: PropTypes.arrayOf(Object)
+	posts: PropTypes.arrayOf(PropTypes.shape({
+			username: PropTypes.string,
+			imageUrl: PropTypes.string,
+			likes: PropTypes.number,
+			timestamp: PropTypes.string
+		})
+	)
 }
 
 export default PostContainer;

@@ -25,7 +25,7 @@ class App extends Component {
 	}
 
 	decode(str) {
-		return JSON.parse(str)[0];
+		return JSON.parse(str);
 	}
 
 	localStorageSave(str) {
@@ -76,7 +76,6 @@ class App extends Component {
 		this.state.posts.filter(post => post.timestamp === index)[0].likes += 1;
 
 		this.localStorageSave(this.encode(this.state.posts));
-
 		this.setState({
 			...this.state,
 			posts: this.decode(this.localStorageFetch())
@@ -90,7 +89,7 @@ class App extends Component {
 			text: event.target.newComment.value
 		});
 
-		this.localStorageSave(this.encode([this.state.posts]));
+		this.localStorageSave(this.encode(this.state.posts));
 
 		event.target.newComment.value = "";
 
