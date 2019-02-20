@@ -86,7 +86,7 @@ class App extends Component {
 	addNewComment(event, index) {
 		event.preventDefault();
 		this.state.posts.filter(post => post.timestamp === index)[0].comments.push({
-			username: 'lukaszsiatka',
+			username: localStorage.getItem('username'),
 			text: event.target.newComment.value
 		});
 
