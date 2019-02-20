@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import dummyData from './dummy-data';
-import PostContainer from './components/PostContainer';
+import PostsPage from './components/PostsPage';
 
 class App extends Component {
 	constructor() {
@@ -109,7 +109,7 @@ class App extends Component {
 					search={this.state.search}
 				/>
 				<div className="posts">
-					<PostContainer
+					<PostsPage
 						posts={posts}
 						likePost={this.likePost}
 						addNewComment={this.addNewComment}
