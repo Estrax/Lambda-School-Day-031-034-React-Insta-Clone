@@ -3,6 +3,7 @@ import './App.css';
 import SearchBar from './components/SearchBar';
 import dummyData from './dummy-data';
 import PostsPage from './components/PostsPage';
+import Authenticate from './hoc/authentication/authenticate';
 
 class App extends Component {
 	constructor() {
@@ -120,4 +121,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default Authenticate(App);
