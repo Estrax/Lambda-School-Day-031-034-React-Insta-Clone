@@ -45,7 +45,8 @@ class SearchBar extends Component {
 							<input
 								name="search"
 								placeholder="Search"
-								onChange={this.props.handleInput}
+								onChange={this.props.handleSearch}
+								// onChange={this.props.handleInput}
 								value={this.props.value}
 							/>
 						</NavItem>
