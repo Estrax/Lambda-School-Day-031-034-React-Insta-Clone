@@ -59,6 +59,7 @@ class SearchBar extends Component {
 			isOpen: false
 		};
 		this.toggle = this.toggle.bind(this);
+		this.signOut = this.signOut.bind(this);
 	}
 
 	toggle() {
@@ -67,6 +68,11 @@ class SearchBar extends Component {
 			isOpen: !this.state.isOpen
 		});
 	}
+
+	signOut() {
+		localStorage.setItem('username', '');
+	}
+
 	render() {
 		return (
 			<NavbarStyled color="white" light expand="md">
@@ -100,7 +106,7 @@ class SearchBar extends Component {
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href="">
+							<NavLink href="" onClick={this.signOut}>
 								<Icon icon={faUser}/>
 							</NavLink>
 						</NavItem>
