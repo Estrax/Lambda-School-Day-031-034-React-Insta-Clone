@@ -42,6 +42,10 @@ const Input = styled.input`
 		color: white;
 	}
 
+	&:focus {
+		background: #333;
+	}
+
 	&[type="submit"] {
 		background: #333;
 		font-weight: 700;
