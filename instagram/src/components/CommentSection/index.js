@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './index.css';
+// import './index.css';
 import Comment from '../Comment';
+import styled from 'styled-components';
+
+const Comments = styled.div`
+	margin: 0 1rem;
+`;
 
 class CommentSection extends Component {
 	constructor(props) {
@@ -12,9 +17,9 @@ class CommentSection extends Component {
 	}
 	render() {
 		return (
-			<div className="comments">
+			<Comments>
 				{this.state.comments.map((comment, i) => <Comment key={i} comment={comment} />)}
-			</div>
+			</Comments>
 		);
 	}
 }

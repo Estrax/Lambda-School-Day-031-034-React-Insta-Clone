@@ -6,20 +6,89 @@ import moment from 'moment';
 
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 
+import styled from 'styled-components';
+
+const PostDiv = styled.div`
+	border: 2px solid lightgrey;
+	margin: 1rem auto 3rem;
+	height: auto;
+	width: 50%;
+	color: black;
+`;
+
+const PostTop = styled.div`
+	display: table;
+	margin: 1rem 0;
+`;
+
+const PostTopImg = styled.img`
+	margin: 0 1rem 0 2rem;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	vertical-align: middle;
+	display: inline-block;
+`;
+
+const PostTopP = styled.p`
+	font-size: 1rem;
+	display: inline-block;
+	font-weight: 500;
+`;
+
+const PostMidImg = styled.img`
+	width: 100%;
+`;
+
+const PostBottom = styled.div`
+	padding-top: 1rem;
+	margin: 0 1rem;
+`;
+
+const PostBottomP = styled.p`
+	font-weight: 500;
+`;
+
+const Time = styled.div`
+	font-size: .8rem;
+	color: grey;
+	margin-left: 1rem;
+`;
+
+const NewComment = styled.form`
+	width: 100%;
+`;
+
+const NewCommentInput = styled.input`
+	width: 100%;
+	height: 3rem;
+	border: 1px solid lightgray;
+	padding-left: 1rem;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+	margin: 0 .5rem;
+	font-size: 1.5rem;
+
+	&:first-child(){
+		margin-left: 0;
+	}
+`;
+
 const Post = (props) => {
 	const timestamp = moment(props.post.timestamp, "MMMM Do YYYY, h:mm:ss a").fromNow();
 	const [liked, setLiked] = useState(false);
 	return (
-		<div className="post">
-			<div className="post-top">
-				<img src={props.post.thumbnailUrl} alt="thumbnail" />
-				<p>{props.post.username}</p>
-			</div>
+		<PostDiv>
+			<PostTop>
+				<PostTopImg src={props.post.thumbnailUrl} alt="thumbnail" />
+				<PostTopP>{props.post.username}</PostTopP>
+			</PostTop>
 			<div className="post-mid">
-				<img src={props.post.imageUrl} alt='post' />
+				<PostMidImg src={props.post.imageUrl} alt='post' />
 			</div>
-			<div className="post-bottom">
-				<FontAwesomeIcon icon={faHeart} className="icon"
+			<PostBottom>
+				<Icon icon={faHeart}
 					onClick={(e) => {
 						if(!liked){
 							setLiked(true);
@@ -27,22 +96,22 @@ const Post = (props) => {
 						}
 					}
 				} />
-				<FontAwesomeIcon icon={faComment} className="icon" />
-				<p className='likes'>{props.post.likes} likes</p>
-			</div>
+				<Icon icon={faComment} />
+				<PostBottomP>{props.post.likes} likes</PostBottomP>
+			</PostBottom>
 			<CommentSection comments={props.post.comments} />
 
-			<div className="time">
+			<Time>
 				<p>{timestamp.toUpperCase()}</p>
-			</div>
+			</Time>
 
-			<form className="new-comment" onSubmit={(e) => props.addNewComment(e, props.post.timestamp)}>
-				<input
+			<NewComment onSubmit={(e) => props.addNewComment(e, props.post.timestamp)}>
+				<NewCommentInput
 					placeholder="Add a comment..."
 					name="newComment"
 				/>
-			</form>
-		</div>
+			</NewComment>
+		</PostDiv>
 	);
 }
 
