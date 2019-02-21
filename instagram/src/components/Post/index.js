@@ -99,7 +99,7 @@ const Post = (props) => {
 				<Icon icon={faComment} />
 				<PostBottomP>{props.post.likes} likes</PostBottomP>
 			</PostBottom>
-			<CommentSection comments={props.post.comments} />
+			<CommentSection comments={props.post.comments} deleteComment={props.deleteComment} postID={props.post.timestamp} />
 
 			<Time>
 				<p>{timestamp.toUpperCase()}</p>

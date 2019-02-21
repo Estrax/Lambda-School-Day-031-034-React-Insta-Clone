@@ -20,6 +20,7 @@ class App extends Component {
 		this.searchPosts = this.searchPosts.bind(this);
 		this.likePost = this.likePost.bind(this);
 		this.addNewComment = this.addNewComment.bind(this);
+		this.deleteComment = this.deleteComment.bind(this);
 	}
 
 	encode(todos) {
@@ -101,6 +102,18 @@ class App extends Component {
 		});
 	}
 
+	deleteComment(event, postTS, commentID) {
+		// event.preventDefault();
+		this.state.posts.filter(post => post.timestamp === postTS)[0].comments.splice(commentID, 1);
+		this.localStorageSave(this.encode(this.state.posts));
+
+		this.setState({
+			...this.state,
+			posts: this.decode(this.localStorageFetch())
+		});
+
+	}
+
 	render() {
 		const posts = this.state.filteredPosts.length > 0 ? this.state.filteredPosts : this.state.posts;
 		return (
@@ -115,6 +128,7 @@ class App extends Component {
 						posts={posts}
 						likePost={this.likePost}
 						addNewComment={this.addNewComment}
+						deleteComment={this.deleteComment}
 					/>
 				</div>
 			</div>
