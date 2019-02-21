@@ -35,6 +35,8 @@
 
 - Read [this article](https://dev.to/nimmo/state-driven-development-for-user-interfaces-part-1-an-introduction-27f1) about 'State Driven Views' and come up with a short paragraph as to why you feel that `state-driven` views are important to us as software developers today? What are state-driven applications? Why are they powerful? How does React enables those patterns?
 
+State Driven Views are very useful elements - not only from the perspective of the code complexity, but also when you look at them as the objects to test. You reduce the possibility to mess up with the state (because you have only one component instead of the number of them), they help you keep your code concise and clean, and of course to ship a good quality code faster because you reduce the number of redundant elements. State Driven Views allow you to build additional paths in your business logic with conditional rendering, middleware and components composition that you can all do with React.
+
 #### Stretch Problems (Day III)
 
 - Add the functionality to select a single Post. If a user clicks on a post, only show that post.
