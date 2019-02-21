@@ -7,6 +7,7 @@ import moment from 'moment';
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 
 import styled from 'styled-components';
+import { Username } from '../../styles/reusables/username';
 
 const PostDiv = styled.div`
 	border: 2px solid lightgrey;
@@ -30,10 +31,8 @@ const PostTopImg = styled.img`
 	display: inline-block;
 `;
 
-const PostTopP = styled.p`
-	font-size: 1rem;
-	display: inline-block;
-	font-weight: 500;
+const PostMid = styled.div`
+
 `;
 
 const PostMidImg = styled.img`
@@ -53,6 +52,10 @@ const Time = styled.div`
 	font-size: .8rem;
 	color: grey;
 	margin-left: 1rem;
+`;
+
+const TimeP = styled.p`
+
 `;
 
 const NewComment = styled.form`
@@ -82,11 +85,11 @@ const Post = (props) => {
 		<PostDiv>
 			<PostTop>
 				<PostTopImg src={props.post.thumbnailUrl} alt="thumbnail" />
-				<PostTopP>{props.post.username}</PostTopP>
+				<Username top>{props.post.username}</Username>
 			</PostTop>
-			<div className="post-mid">
+			<PostMid>
 				<PostMidImg src={props.post.imageUrl} alt='post' />
-			</div>
+			</PostMid>
 			<PostBottom>
 				<Icon icon={faHeart}
 					onClick={(e) => {
@@ -102,7 +105,7 @@ const Post = (props) => {
 			<CommentSection comments={props.post.comments} deleteComment={props.deleteComment} postID={props.post.timestamp} />
 
 			<Time>
-				<p>{timestamp.toUpperCase()}</p>
+				<TimeP>{timestamp.toUpperCase()}</TimeP>
 			</Time>
 
 			<NewComment onSubmit={(e) => props.addNewComment(e, props.post.timestamp)}>
