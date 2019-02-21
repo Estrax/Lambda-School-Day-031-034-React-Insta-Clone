@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchBar from './components/SearchBar';
 import dummyData from './dummy-data';
 import PostsPage from './components/PostsPage';
 import Authenticate from './hoc/authentication/authenticate';
 import LoginPage from './components/Login';
+import NavbarComponent from './components/Navbar';
 
 class App extends Component {
 	constructor() {
@@ -118,7 +118,7 @@ class App extends Component {
 		const posts = this.state.filteredPosts.length > 0 ? this.state.filteredPosts : this.state.posts;
 		return (
 			<div>
-				<SearchBar
+				<NavbarComponent
 					handleInput={this.handleInput}
 					handleSearch={this.searchPosts}
 					search={this.state.search}
