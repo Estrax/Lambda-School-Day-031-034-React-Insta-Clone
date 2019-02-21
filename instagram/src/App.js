@@ -103,7 +103,7 @@ class App extends Component {
 	}
 
 	deleteComment(event, postTS, commentID) {
-		// event.preventDefault();
+		event.preventDefault();
 		this.state.posts.filter(post => post.timestamp === postTS)[0].comments.splice(commentID, 1);
 		this.localStorageSave(this.encode(this.state.posts));
 
