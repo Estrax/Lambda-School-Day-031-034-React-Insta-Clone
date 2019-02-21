@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import dummyData from './dummy-data';
-import PostContainer from './components/PostContainer';
+import PostsPage from './components/PostsPage';
+import Authenticate from './hoc/authentication/authenticate';
+import LoginPage from './components/Login';
 
 class App extends Component {
 	constructor() {
@@ -18,6 +20,7 @@ class App extends Component {
 		this.searchPosts = this.searchPosts.bind(this);
 		this.likePost = this.likePost.bind(this);
 		this.addNewComment = this.addNewComment.bind(this);
+		this.deleteComment = this.deleteComment.bind(this);
 	}
 
 	encode(todos) {
@@ -85,7 +88,7 @@ class App extends Component {
 	addNewComment(event, index) {
 		event.preventDefault();
 		this.state.posts.filter(post => post.timestamp === index)[0].comments.push({
-			username: 'lukaszsiatka',
+			username: localStorage.getItem('username'),
 			text: event.target.newComment.value
 		});
 
@@ -99,6 +102,18 @@ class App extends Component {
 		});
 	}
 
+	deleteComment(event, postTS, commentID) {
+		// event.preventDefault();
+		this.state.posts.filter(post => post.timestamp === postTS)[0].comments.splice(commentID, 1);
+		this.localStorageSave(this.encode(this.state.posts));
+
+		this.setState({
+			...this.state,
+			posts: this.decode(this.localStorageFetch())
+		});
+
+	}
+
 	render() {
 		const posts = this.state.filteredPosts.length > 0 ? this.state.filteredPosts : this.state.posts;
 		return (
@@ -109,10 +124,11 @@ class App extends Component {
 					search={this.state.search}
 				/>
 				<div className="posts">
-					<PostContainer
+					<PostsPage
 						posts={posts}
 						likePost={this.likePost}
 						addNewComment={this.addNewComment}
+						deleteComment={this.deleteComment}
 					/>
 				</div>
 			</div>
@@ -120,4 +136,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default Authenticate(App)(LoginPage);

@@ -14,6 +14,43 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faCompass, faUser, faHeart } from '@fortawesome/free-regular-svg-icons';
 
+import styled from 'styled-components';
+
+const NavbarBrandStyled = styled(NavbarBrand)`
+	font-family: 'Grand Hotel';
+	font-size: 24px !important;
+`;
+
+const NavbarStyled = styled(Navbar)`
+	margin-bottom: 5rem;
+	border-bottom: 1px solid lightgray;
+`;
+
+
+const NavbarInput = styled.input`
+	width: 200px;
+	text-align: center;
+	box-sizing: border-box;
+	background: url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_search_48px-128.png);
+	background-color: rgb(250, 250, 250);
+	background-size: 16px;
+	background-repeat: no-repeat;
+	background-position: 54px 50%;
+
+	&:focus {
+		background-position: 0;
+	}
+`;
+
+const Divider = styled.span`
+	margin: 0 .5rem;
+	color: lightgrey;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+	font-size: 1.5rem;
+`;
+
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
@@ -22,6 +59,7 @@ class SearchBar extends Component {
 			isOpen: false
 		};
 		this.toggle = this.toggle.bind(this);
+		this.signOut = this.signOut.bind(this);
 	}
 
 	toggle() {
@@ -30,19 +68,24 @@ class SearchBar extends Component {
 			isOpen: !this.state.isOpen
 		});
 	}
+
+	signOut() {
+		localStorage.setItem('username', '');
+	}
+
 	render() {
 		return (
-			<Navbar color="white" light expand="md">
-				<NavbarBrand href="/">
-					<FontAwesomeIcon icon={faInstagram} />
-					<span className="divider">|</span>
+			<NavbarStyled color="white" light expand="md">
+				<NavbarBrandStyled href="/">
+					<Icon icon={faInstagram} />
+					<Divider>|</Divider>
 					Instagram
-				</NavbarBrand>
+				</NavbarBrandStyled>
 				<NavbarToggler onClick={this.toggle} />
 				<Collapse isOpen={this.state.isOpen} navbar>
 					<Nav className="ml-auto" navbar>
 						<NavItem>
-							<input
+							<NavbarInput
 								name="search"
 								placeholder="Search"
 								onChange={this.props.handleSearch}
@@ -54,22 +97,22 @@ class SearchBar extends Component {
 					<Nav className="ml-auto" navbar>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon={faCompass} className="icon" />
+								<Icon icon={faCompass} />
 							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink href="">
-								<FontAwesomeIcon icon={faHeart} className="icon" />
+								<Icon icon={faHeart} />
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href="">
-								<FontAwesomeIcon icon={faUser} className="icon" />
+							<NavLink href="" onClick={this.signOut}>
+								<Icon icon={faUser}/>
 							</NavLink>
 						</NavItem>
 					</Nav>
 				</Collapse>
-			</Navbar>
+			</NavbarStyled>
 		);
 	}
 }
