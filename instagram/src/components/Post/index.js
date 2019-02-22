@@ -8,6 +8,7 @@ import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 
 import styled from 'styled-components';
 import { Username } from '../../styles/reusables/username';
+import { Link } from 'react-router-dom';
 
 const PostDiv = styled.div`
 	border: 2px solid lightgrey;
@@ -78,15 +79,26 @@ const Icon = styled(FontAwesomeIcon)`
 	}
 `;
 
+const StyledLink = styled(Link)`
+	text-decoration: none;
+	color: black !important;
+
+	&:hover, &:visited, &:link, &:active, &:focus {
+		text-decoration: none;
+	}
+`;
+
 const Post = (props) => {
 	const timestamp = moment(props.post.timestamp, "MMMM Do YYYY, h:mm:ss a").fromNow();
 	const [liked, setLiked] = useState(false);
 	return (
 		<PostDiv>
-			<PostTop>
-				<PostTopImg src={props.post.thumbnailUrl} alt="thumbnail" />
-				<Username top>{props.post.username}</Username>
-			</PostTop>
+			<StyledLink to={`/single-post/${props.post.username}`}>
+				<PostTop>
+					<PostTopImg src={props.post.thumbnailUrl} alt="thumbnail" />
+					<Username top>{props.post.username}</Username>
+				</PostTop>
+			</StyledLink>
 			<PostMid>
 				<PostMidImg src={props.post.imageUrl} alt='post' />
 			</PostMid>

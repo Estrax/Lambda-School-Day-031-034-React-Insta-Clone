@@ -59,7 +59,7 @@ class NavbarComponent extends Component {
 	render() {
 		return (
 			<NavbarStyled color="white" light expand="md">
-				<NavbarBrandStyled href="/">
+				<NavbarBrandStyled href='/'>
 					<Icon icon={faInstagram} />
 					<Divider>|</Divider>
 					Instagram
