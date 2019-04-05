@@ -7,6 +7,8 @@ import moment from 'moment';
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons';
 
 import styled from 'styled-components';
+import { Username } from '../../styles/reusables/username';
+import { Link } from 'react-router-dom';
 
 const PostDiv = styled.div`
 	border: 2px solid lightgrey;
@@ -30,10 +32,8 @@ const PostTopImg = styled.img`
 	display: inline-block;
 `;
 
-const PostTopP = styled.p`
-	font-size: 1rem;
-	display: inline-block;
-	font-weight: 500;
+const PostMid = styled.div`
+
 `;
 
 const PostMidImg = styled.img`
@@ -53,6 +53,10 @@ const Time = styled.div`
 	font-size: .8rem;
 	color: grey;
 	margin-left: 1rem;
+`;
+
+const TimeP = styled.p`
+
 `;
 
 const NewComment = styled.form`
@@ -75,18 +79,29 @@ const Icon = styled(FontAwesomeIcon)`
 	}
 `;
 
+const StyledLink = styled(Link)`
+	text-decoration: none;
+	color: black !important;
+
+	&:hover, &:visited, &:link, &:active, &:focus {
+		text-decoration: none;
+	}
+`;
+
 const Post = (props) => {
 	const timestamp = moment(props.post.timestamp, "MMMM Do YYYY, h:mm:ss a").fromNow();
 	const [liked, setLiked] = useState(false);
 	return (
 		<PostDiv>
-			<PostTop>
-				<PostTopImg src={props.post.thumbnailUrl} alt="thumbnail" />
-				<PostTopP>{props.post.username}</PostTopP>
-			</PostTop>
-			<div className="post-mid">
+			<StyledLink to={`/single-post/${props.post.username}`}>
+				<PostTop>
+					<PostTopImg src={props.post.thumbnailUrl} alt="thumbnail" />
+					<Username top>{props.post.username}</Username>
+				</PostTop>
+			</StyledLink>
+			<PostMid>
 				<PostMidImg src={props.post.imageUrl} alt='post' />
-			</div>
+			</PostMid>
 			<PostBottom>
 				<Icon icon={faHeart}
 					onClick={(e) => {
@@ -102,7 +117,7 @@ const Post = (props) => {
 			<CommentSection comments={props.post.comments} deleteComment={props.deleteComment} postID={props.post.timestamp} />
 
 			<Time>
-				<p>{timestamp.toUpperCase()}</p>
+				<TimeP>{timestamp.toUpperCase()}</TimeP>
 			</Time>
 
 			<NewComment onSubmit={(e) => props.addNewComment(e, props.post.timestamp)}>

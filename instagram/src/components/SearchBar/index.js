@@ -1,31 +1,5 @@
-import React, { Component } from 'react';
-import './index.css';
-// import logo from '../../assets/iglogo.png';
-import {
-	Collapse,
-	Navbar,
-	NavbarToggler,
-	NavbarBrand,
-	Nav,
-	NavItem,
-	NavLink
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faCompass, faUser, faHeart } from '@fortawesome/free-regular-svg-icons';
-
+import React from 'react';
 import styled from 'styled-components';
-
-const NavbarBrandStyled = styled(NavbarBrand)`
-	font-family: 'Grand Hotel';
-	font-size: 24px !important;
-`;
-
-const NavbarStyled = styled(Navbar)`
-	margin-bottom: 5rem;
-	border-bottom: 1px solid lightgray;
-`;
-
 
 const NavbarInput = styled.input`
 	width: 200px;
@@ -42,79 +16,15 @@ const NavbarInput = styled.input`
 	}
 `;
 
-const Divider = styled.span`
-	margin: 0 .5rem;
-	color: lightgrey;
-`;
-
-const Icon = styled(FontAwesomeIcon)`
-	font-size: 1.5rem;
-`;
-
-class SearchBar extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			isOpen: false
-		};
-		this.toggle = this.toggle.bind(this);
-		this.signOut = this.signOut.bind(this);
-	}
-
-	toggle() {
-		this.setState({
-			...this.state,
-			isOpen: !this.state.isOpen
-		});
-	}
-
-	signOut() {
-		localStorage.setItem('username', '');
-	}
-
-	render() {
-		return (
-			<NavbarStyled color="white" light expand="md">
-				<NavbarBrandStyled href="/">
-					<Icon icon={faInstagram} />
-					<Divider>|</Divider>
-					Instagram
-				</NavbarBrandStyled>
-				<NavbarToggler onClick={this.toggle} />
-				<Collapse isOpen={this.state.isOpen} navbar>
-					<Nav className="ml-auto" navbar>
-						<NavItem>
-							<NavbarInput
-								name="search"
-								placeholder="Search"
-								onChange={this.props.handleSearch}
-								// onChange={this.props.handleInput}
-								value={this.props.value}
-							/>
-						</NavItem>
-					</Nav>
-					<Nav className="ml-auto" navbar>
-						<NavItem>
-							<NavLink href="">
-								<Icon icon={faCompass} />
-							</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="">
-								<Icon icon={faHeart} />
-							</NavLink>
-						</NavItem>
-						<NavItem>
-							<NavLink href="" onClick={this.signOut}>
-								<Icon icon={faUser}/>
-							</NavLink>
-						</NavItem>
-					</Nav>
-				</Collapse>
-			</NavbarStyled>
-		);
-	}
+const SearchBar = (props) => {
+	return (
+		<NavbarInput
+			name="search"
+			placeholder="Search"
+			onChange={props.handleSearch}
+			value={props.value}
+		/>
+	);
 }
 
 export default SearchBar;

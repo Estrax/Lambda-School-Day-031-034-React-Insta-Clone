@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import './index.css';
 import styled from 'styled-components';
+import { Username } from '../../styles/reusables/username';
 
 const CommentDiv = styled.div`
 	display: block;
@@ -9,10 +10,6 @@ const CommentDiv = styled.div`
 
 const CommentP = styled.p`
 	display: inline-block;
-`;
-
-const Username = styled.span`
-	font-weight: 700;
 `;
 
 const Content = styled.span`

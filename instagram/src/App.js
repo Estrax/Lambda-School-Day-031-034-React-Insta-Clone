@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import SearchBar from './components/SearchBar';
 import dummyData from './dummy-data';
-import PostsPage from './components/PostsPage';
 import Authenticate from './hoc/authentication/authenticate';
 import LoginPage from './components/Login';
+import NavbarComponent from './components/Navbar';
+import PostsPage from './components/PostsPage';
+import { Switch, Route } from 'react-router-dom';
+import SinglePost from './components/SinglePost';
 
 class App extends Component {
 	constructor() {
@@ -13,7 +15,7 @@ class App extends Component {
 		this.state = {
 			posts: [],
 			search: '',
-			filteredPosts: []
+			filteredPosts: [],
 		}
 
 		this.handleInput = this.handleInput.bind(this);
@@ -21,6 +23,7 @@ class App extends Component {
 		this.likePost = this.likePost.bind(this);
 		this.addNewComment = this.addNewComment.bind(this);
 		this.deleteComment = this.deleteComment.bind(this);
+		this.getPost = this.getPost.bind(this);
 	}
 
 	encode(todos) {
@@ -103,7 +106,7 @@ class App extends Component {
 	}
 
 	deleteComment(event, postTS, commentID) {
-		// event.preventDefault();
+		event.preventDefault();
 		this.state.posts.filter(post => post.timestamp === postTS)[0].comments.splice(commentID, 1);
 		this.localStorageSave(this.encode(this.state.posts));
 
@@ -111,25 +114,26 @@ class App extends Component {
 			...this.state,
 			posts: this.decode(this.localStorageFetch())
 		});
+	}
 
+	getPost(index) {
+		return this.state.posts.filter(post => post.username === index)[0];
 	}
 
 	render() {
 		const posts = this.state.filteredPosts.length > 0 ? this.state.filteredPosts : this.state.posts;
 		return (
 			<div>
-				<SearchBar
+				<NavbarComponent
 					handleInput={this.handleInput}
 					handleSearch={this.searchPosts}
 					search={this.state.search}
 				/>
 				<div className="posts">
-					<PostsPage
-						posts={posts}
-						likePost={this.likePost}
-						addNewComment={this.addNewComment}
-						deleteComment={this.deleteComment}
-					/>
+				<Switch>
+					<Route exact path='/' component={() => <PostsPage posts={posts} likePost={this.likePost} addNewComment={this.addNewComment} deleteComment={this.deleteComment} />}/>
+					<Route exact path='/single-post/:username' component={(props) => <SinglePost username={props.match.params.username} likePost={this.likePost} addNewComment={this.addNewComment} deleteComment={this.deleteComment} getPost={this.getPost} />}/>
+				</Switch>
 				</div>
 			</div>
 		);
